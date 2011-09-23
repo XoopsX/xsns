@@ -441,7 +441,8 @@ class XsnsCommunityHandler extends XsnsRootHandler
 			$ret[] = array(
 				'c_commu_id' => $cid,
 				'name' => $obj->getVar('name'),
-				'info' => $obj->getVar('info', 'x'),		// stripXoopsCode
+			//	'info' => $obj->getVar('info', 'x'),		// stripXoopsCode
+				'info' => strip_tags($obj->getVar('info')),	// naao
 				'category_name' => isset($category_list[$cat_id]) ? $category_list[$cat_id] : "",
 				'member_count' => $obj->getMemberCount(),	// != $row['member_count']
 				'page_url' => XSNS_BASE_URL.'/?cid='.$cid,

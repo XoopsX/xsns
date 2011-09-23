@@ -21,6 +21,21 @@ function b_xsns_recent_topic_show($options)
 	
 	$own_uid = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : -1;
 	
+	// naao from
+	//各トピの最新コメントIDを取得
+	$sql = "SELECT c_commu_topic_id AS tid, MAX(c_commu_topic_comment_id) AS com_id FROM ". $db->prefix($mydirname.'_c_commu_topic_comment')." GROUP BY tid;";
+
+	$result = $db->query($sql);
+	if(!$result || $db->getRowsNum($result) < 1){
+		return array();
+	}
+	
+	while ( $dbdat = $db->fetchArray($result)){
+		$com_num[] = intval($dbdat['com_id']);
+	}
+
+  	$whr_num = "tc.c_commu_topic_comment_id IN (" .implode( "," , $com_num ). ") ";
+
 	// topic search
 	$sql = "SELECT ".
 			"c.c_commu_id AS cid,".
@@ -32,15 +47,18 @@ function b_xsns_recent_topic_show($options)
 			"t.name AS tname,".
 			"tc.body AS tcbody,".
 			"tc.uid AS tcuid,".
-			"MAX(tc.number) AS comment_count,".
-			"MAX(tc.r_datetime) AS max_r_datetime".
+			"tc.number AS comment_count,".
+			"tc.r_datetime AS r_datetime,".
+			"tc.c_commu_topic_comment_id ".
 			" FROM (". $db->prefix($mydirname.'_c_commu'). " c".
 			" INNER JOIN ". $db->prefix($mydirname.'_c_commu_topic_comment'). " tc".
 			" USING(c_commu_id))".
 			" INNER JOIN ". $db->prefix($mydirname.'_c_commu_topic'). " t".
 			" USING(c_commu_topic_id)".
-			" GROUP BY tid".
-			" ORDER BY max_r_datetime DESC";
+			" WHERE ".$whr_num.
+			" ORDER BY r_datetime DESC";
+	// naao to
+	
 	$rs = $db->query($sql);
 	if(!$rs || $db->getRowsNum($rs) < 1){
 		return array();
@@ -70,7 +88,8 @@ function b_xsns_recent_topic_show($options)
 			}
 		}
 		
-		$date_arr = explode(' ', XsnsUtils::getUserDatetime($row['max_r_datetime']), 2);
+		//$date_arr = explode(' ', XsnsUtils::getUserDatetime($row['max_r_datetime']), 2);
+		$date_arr = explode(' ', XsnsUtils::getUserDatetime($row['r_datetime']), 2);	//naao
 		if(!is_array($date_arr)){
 			continue;
 		}
@@ -89,13 +108,16 @@ function b_xsns_recent_topic_show($options)
 			$r_time = $r_time_arr[1]. constant($constpref.'_MONTH'). $r_time_arr[2]. constant($constpref.'_DAY');
 		}
 		
+			$comment_index = intval(intval($row['comment_count'])/20)*20;	//naao
+			
 		$block['topic_list'][] = array(
-			'link' => XOOPS_URL.'/modules/'.$mydirname.'/?p=topic&tid='.intval($row['tid']),
+			'link' => XOOPS_URL.'/modules/'.$mydirname.'/?p=topic&tid='.intval($row['tid']).'&s='.$comment_index.'#'.intval($row['comment_count']),	//naao
 			'title' => $myts->htmlSpecialChars($row['tname']),
 			'body' => $myts->htmlSpecialChars($row['tcbody']),
 			'comment_count' => intval($row['comment_count']),
 			'datetime' => $r_time,
-			'time' => XsnsUtils::getUserTimestamp($row['max_r_datetime']),
+		//	'time' => XsnsUtils::getUserTimestamp($row['max_r_datetime']),	//naao
+			'time' => XsnsUtils::getUserTimestamp($row['r_datetime']),	//naao
 			'uid' => intval($row['tcuid']),
 			'community' => array(
 				'link' => XOOPS_URL.'/modules/'.$mydirname.'/?cid='.intval($row['cid']),

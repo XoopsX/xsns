@@ -38,13 +38,24 @@ function dispatch()
 	require_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 	require_once XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/user.php';
 
-	if (!$this->validateToken('choose') || !is_object($xoopsUser) || !isset($_POST['avatar_id']) || !is_array($_POST['avatar_id']) || count($_POST['avatar_id'])>1) {
+	//if (!$this->validateToken('choose') || !is_object($xoopsUser) || !isset($_POST['avatar_id']) || !is_array($_POST['avatar_id']) || count($_POST['avatar_id'])>1) {
+	if (!$this->validateToken('choose') || !is_object($xoopsUser) || !isset($_POST['avatar_id']) || count($_POST['avatar_id'])>1) { //naao
 		redirect_header(XSNS_URL_MYPAGE_PROFILE, 3, _US_NOEDITRIGHT);
 	}
 	
-	foreach($_POST['avatar_id'] as $id => $value){
-		$avatar_id = $id;
-		break;
+	// Check is K-TAI?
+	if (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER) {
+		$avatar_id = $_POST['avatar_id'] ;
+	} else {
+		global $xoopsTpl;
+		if ($xoopsTpl->_tpl_vars['wizmobile_ismobile']) {
+			$avatar_id = $_POST['avatar_id'] ;
+		} else {
+			foreach($_POST['avatar_id'] as $id => $value){
+				$avatar_id = $id;
+				break;
+			}
+		}
 	}
 	
 	$avt_handler =& xoops_gethandler('avatar');

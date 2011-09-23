@@ -23,7 +23,8 @@ function assignStyleSheet($filename=NULL)
 	if(!is_null($filename)){
 		$html.= '<link rel="stylesheet" type="text/css" media="screen" href="'.XSNS_CSS_URL.$filename.'" />';
 	}
-	$this->tpl->assign('xoops_module_header', $html);
+	//$this->tpl->assign('xoops_module_header', $html);
+	$this->tpl->assign('xoops_module_header', $this->tpl->get_template_vars( 'xoops_module_header' ).$html);
 }
 //------------------------------------------------------------------------------
 
@@ -52,7 +53,8 @@ function assignHeader($css_file=NULL, $js_file=NULL)
 			$html.= '<script type="text/javascript" src="'.XSNS_JS_URL.$js_file.'"></script>';
 		}
 	}
-	$this->tpl->assign('xoops_module_header', $html);
+	//$this->tpl->assign('xoops_module_header', $html);
+	$this->tpl->assign('xoops_module_header', $this->tpl->get_template_vars( 'xoops_module_header' ).$html);
 }
 //------------------------------------------------------------------------------
 

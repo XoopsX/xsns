@@ -25,8 +25,11 @@
 //	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //	------------------------------------------------------------------------ //
 
-if(strpos(@$_SERVER['HTTP_REFERER'], XOOPS_URL)!==false && isset($_GET['f'])){
-	
+//if(strpos(@$_SERVER['HTTP_REFERER'], XOOPS_URL)!==false && isset($_GET['f'])){//if(isset($_GET['f'])){
+
+global $xoopsTpl;
+
+if (((HYP_K_TAI_RENDER || $xoopsTpl->_tpl_vars['wizmobile_ismobile']) && isset($_GET['f'])) || (strpos(@$_SERVER['HTTP_REFERER'], XOOPS_URL)!==false && isset($_GET['f']))) {
 	$cache_limit = 3600;
 	
 	if(!preg_match('/[0-9a-z]{13}/i', $_GET['f'])){

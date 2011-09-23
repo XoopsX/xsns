@@ -16,6 +16,13 @@ function dispatch()
 		redirect_header(XOOPS_URL, 2, _NOPERM);
 	}
 	
+	require_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+	$token_handler =& new XoopsMultiTokenHandler();
+	$token = new XoopsFormToken($token_handler->create('TOPIC_EDIT'));
+	// Hidden
+	$token_tag = '<input type="hidden" name="'.$token->_name.'" value="'.$token->_value.'">';
+	$this->context->setAttribute('token_tag', $token_tag);
+	
 	$commu_handler =& XsnsCommunityHandler::getInstance();
 	$topic_handler =& XsnsTopicHandler::getInstance();
 	$comment_handler =& XsnsTopicCommentHandler::getInstance();

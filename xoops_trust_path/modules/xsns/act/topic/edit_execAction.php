@@ -100,7 +100,7 @@ function dispatch()
 		
 		$topic->setVars(array(
 			'name' => $param['name'],
-			'r_datetime' => $r_datetime,
+		//	'r_datetime' => $r_datetime, // naao 編集時に、トピ日時を更新しない
 //			'r_date' => $r_date,
 		));
 		
@@ -118,7 +118,7 @@ function dispatch()
 			$comment->setVars(array(
 				'body' => $param['body'],
 				'number' => $param['number'],
-				'r_datetime' => $r_datetime,
+		//		'r_datetime' => $r_datetime, // naao 編集時に、トピ日時を更新しない
 //				'r_date' => $r_date,
 			));
 			
