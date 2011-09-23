@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja">
+<meta http-equiv="content-type" content="text/html; charset=euc-jp">
+<meta http-equiv="content-style-type" content="text/css">
+<head>
+<title>コミュニティモジュール(xsns)説明書</title>
+<style type="text/css">
+h2 {
+	text-align:center;
+	font-size: 160%;
+	color:#666666;
+}
+
+h4 {
+	font-size: 110%;
+	color:#333333;
+	padding:0.3em;
+	border-left:5px solid #ff69b4;
+}
+
+ul li{
+	list-style-type: square;
+}
+
+.right{	
+	text-align:right;
+	padding-right:20px;
+	color:#333333;
+}
+
+.title0{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.title1{
+	color: #0000b3;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.title2{
+	color: #007b3e;
+	font-weight: bold;
+}
+
+
+p { margin:10px }
+
+.red{ 
+	color:#dc143c; //ff0000;
+	
+	}
+.box{
+	width:750px;
+	margin:10px;
+	padding:10px;
+	background-color:#f5f5dc;
+}
+.box h5{ 
+	margin:0;
+	font-size:105%;
+	color:#6b8e23;
+	font-weight:bold;
+}
+.box1{
+	width:650px;
+	margin:5px 15px 5px 15px;
+	padding:5px;
+	background-color:#f5f5f5;
+	border:solid 1px #666666;
+}
+
+</style>
+
+</head>
+<body style="background-color:#fffdee;">
+
+<h2>コミュニティモジュール(xsns)説明書</h2>
+<p class="right">日付： 2008.04.20</p>
+<p class="right">文責：（株）ブラテック　開発者</p>
+
+<h4 class="title0"><a id="index">目次</a></h4>
+
+<ul>
+<li><a href="#summary">概要</a></li>
+<li><a href="#feature">主な機能</a></li>
+<li><a href="#condition">動作確認環境</a></li>
+<li><a href="#install">インストール方法</a></li>
+<li><a href="#update">アップデート方法</a></li>
+<li><a href="#uninstall">アンインストール方法</a></li>
+<li><a href="#config">初期設定</a></li>
+<li><a href="#version">バージョン情報</a></li>
+<li><a href="#licence">使用条件</a></li>
+<li><a href="#acknowledgment">謝辞</a></li>
+<li><a href="#contact">連絡先</a></li>
+</ul>
+
+<hr>
+
+<h4 class="title0"><a id="summary">概要</a></h4>
+<p>
+　このモジュール(xsns)は、<span class="red">SNS(ソーシャル ネットワーキング サービス)をXOOPS内で
+立ち上げることができるコミュニティモジュール</span>です。使用用途としては、XOOPSの登録ユーザー内で同じ興味を持つユーザ同士が話し合ったり、限定されたメンバー内で何かやりとりがしたい場合などが考えられます。<br />
+
+　これまで自前でSNSサービスを立ち上げる場合、<a href="http://openpne.jp/" target="_blank">OpenPNE</a>に代表されるSNSエンジンを利用し、サイトを一から構築する必要がありました。
+しかし、既にXOOPSで会員制のポータルサイトを構築している方にとって、
+上記ソフトウェアを利用し、追加でSNSサービスを立ち上げることは
+サイトの運営上（複数サイトでのユーザーの登録・管理など）利用しにくい面もありました。<br />
+
+　本モジュールはそういった方々をターゲットとして開発されたものでして、XOOPSで構築済のサイトに対してモジュールの追加インストールを行うだけでSNSを立ち上げることが可能となります。<br />
+
+　本モジュールver1.0正式リリース現在、OpenPNEでも<a href="http://www.openpne.jp/docs/pne-masterslave/" target="_blank">ID連係機能（シングルサインオン）</a>があり、
+XOOPSのユーザー情報を利用したSNSサイトの立ち上げが可能となっておりますので、
+本モジュールはXOOPSでSNS機能を行う際の候補の一つとして考えていただければ幸いです。
+</p>
+
+<hr>
+
+<h4 class="title0"><a id="feature">主な機能</a></h4>
+<p>本モジュールは、以下の特徴を持っています。</p>
+<ul>
+<li><span class="red">D3(Duplicatable V3)対応</span><br />D3の詳しい説明については、こちらをご覧ください。<br />　<a href="http://xoops.kudok.com/d3.htm" target="_blank">文系のためのXOOPS入門　XOOPSの新型モジュールシステム「D3」の説明</a><br /></li><br />
+<li>mixiライクのコミュニティ機能</li>
+<ul>
+<li>人気コミュニティ表示機能</li>
+<li>コミュニティ管理者設定・編集機能</li>
+<li>画像アップロード機能</li>
+<li>ファイルアップロード機能（ドキュメント）</li>
+<li>コメントのレス投稿支援、レス表示機能</li>
+<li>イベント通知機能</li>
+</ul>
+<br><li>マイページ機能　<span class="red">(※注意　XOOPSのアカウント情報のページを置き換えて表示するかを選択します。)</span></li>
+<ul>
+<li>参加コミュニティ、マイフレンド登録・表示機能</li>
+<li>参加コミュニティの新着情報、友人ブログの新着情報表示機能</li>
+<li>マイフレンドの紹介文表示機能</li>
+<li>マイブログ表示機能(対応：Weblog, WeblogD3, WordPress XOOPS Module, d3blog)</li>
+<li>サイト内の新着情報表示機能</li>
+<li>あしあと表示機能</li>
+</ul>
+<br /><li>管理者ページ</li>
+<ul>
+<li>一般設定</li>
+<li>画像管理機能</li>
+<li>ファイル管理機能</li>
+<li>簡易アクセス解析機能</li>
+</ul>
+</ul>
+
+<hr>
+
+<h4 class="title0"><a id="condition">動作確認環境</a></h4>
+
+<ul>
+
+<li>
+<p>XOOPS</p>
+<p>
+　XOOPS Cube Legacy 2.1.1<br>
+　XOOPS Cube Legacy 2.1.2<br>
+　XOOPS 2.0.16a JP<br>
+</p>
+</li>
+
+<li>
+<p>サーバー</p>
+<p>
+　Windows XP Professional SP2 + Apache 2.2.4 + MySQL 5.0.45 + PHP 5.2.3(XAMPP)
+</p>
+</li>
+
+<li>
+<p>クライアント</p>
+<p>
+　Windows XP Professional SP2 + Internet Explorer 6<br>
+　Windows XP Professional SP2 + Internet Explorer 7<br>
+　Windows XP Professional SP2 + Firefox 2.0.0.9<br>
+　Windows XP Professional SP2 + Safari 3.0.4<br>
+　Windows XP Professional SP2 + Opera 9.23<br>
+</p>
+</li>
+
+</ul>
+
+<hr>
+
+
+<h4 class="title0"><a id="install">インストール方法</a></h4>
+
+<ol>
+<li>
+<p class="title1">XOOPS_TRUST_PATHの設定</p>
+<p>
+<i>XOOPS_ROOT_PATH</i> /mainfile.php で XOOPS_TRUST_PATH が定義されていない場合は、以下のように定義してください。<br>
+<div class="box"><h5>○XOOPS2.0系の場合 </h5>
+<p> mainfile.phpの39行目付近にあるXOOPS_URLの行以下に、以下の1行を追加してください。<br />
+設定するパスは、お使いの環境に合わせて設定してください。<br />
+<div class="box1">define('XOOPS_URL', 'http://www.xoops.com/'); <br />
+<span class="red">   define('XOOPS_TRUST_PATH', '/home/yourhome/xoops_trust_path');　←追加例</span></p>
+</div>
+</div>
+<div class="box"><h5>○XOOPS2.1系の場合 </h5>
+<p> mainfile.phpの39行目にあるXOOPS_TRUST_PATHを設定してください。<br />
+設定するパスは、お使いの環境に合わせて設定してください。<br />
+<div class="box1">define('XOOPS_TRUST_PATH', '<span class="red">/home/yourhome/xoops_trust_path</span>');<span class="red">　←設定例</span>
+</p>
+</div>
+</div>
+</p>
+</li>
+
+<li>
+<p class="title1">ファイルのアップロード</p>
+<p>
+・ html ディレクトリの中身を <i>XOOPS_ROOT_PATH</i> の中へコピー<br>
+　<span class="red">※ モジュールのディレクトリ名 (xsns) は任意の名称に変更できます。(半角15文字以内)<br />　　　ただし、インストール後に変更することはできません。</span>
+</p>
+<p>
+・ xoops_trust_path ディレクトリの中身を <i>XOOPS_TRUST_PATH</i> の中へコピー<br>
+　<span class="red">※ こちらのディレクトリ名は変更する必要はありません。</span>
+</p>
+</li>
+<li>
+<p class="title1">XOOPSへインストール</p>
+<p>
+　管理者メニューのモジュール管理からインストールしてください。<br>
+</p>
+　　<span class="red">※インストール後、本モジュールの管理者メニュー上部に表示されるディレクトリの属性変更を行ってください。</span>
+<div class="box"><h5>○　参考情報</h5>
+<p>変更するディレクトリのパーミッションは以下の通りです。<br />
+<div class="box1">html/uploads/xsns <span class="red">[777]</span><br />html/uploads/xsns/thumbnail1 <span class="red">[777]</span> <br />html/uploads/xsns/thumbnail2 <span class="red">[777]</span><br />html/uploads/xsns/thumbnail3 <span class="red">[777]</span> <br />
+</p>
+</div>
+</div>
+</li>
+</ol>
+
+<hr>
+
+<h4 class="title0"><a id="update">アップデート方法</a></h4>
+
+<p>
+以下の手順に従ってアップデートを行ってください。<br>
+公開サイトでアップデートを行う際は、サイトをメンテナンス中にするか、モジュールを非アクティブにしてから行ってください。<br>
+</p>
+
+<br>
+
+<p><b>・1.1.0 から 1.1.1 へアップデートする場合</b></p>
+
+<ol>
+<li>
+<p class="title1">ファイルをアップロード</p>
+<p>
+配布アーカイブ内のxoops_trust_pathディレクトリを <i>XOOPS_TRUST_PATH</i> へ上書きアップロードしてください。
+</p>
+</li>
+
+<li>
+<p class="title1">モジュールのアップデート</p>
+<p>
+管理者メニューのモジュール管理から、xsnsモジュールのアップデートを行ってください。
+</p>
+</li>
+</ol>
+
+<br>
+
+<p><b>・1.0.x から 1.1.0, 1.1.1 へアップデートする場合</b></p>
+<p class="red">
+※ 以下の手順は、アップデートにより使用されなくなるファイルを削除するための措置です。セキュリティのために必ず行ってください。<br>
+</p>
+<p class="red">
+※ また、1.1.0以降ではテンプレートの仕様が大幅に変更されています。<br>
+　 過去のバージョンのテンプレートを書き換えてご利用されていた方は、お手数ですが再度テンプレートを作り直してください。<br>
+</p>
+
+<ol>
+
+<li>
+<p class="title1">以前のバージョンのファイルを削除</p>
+<p>
+<i>XOOPS_ROOT_PATH</i> /modules/xsns<br>
+<i>XOOPS_TRUST_PATH</i> /modules/xsns<br>
+</p>
+の中のファイルを削除してください。<br>
+<p class="red">
+※ モジュールをアンインストールする必要はありません。<br>
+※ アップロードした画像/ファイルが上記のディレクトリ内にある場合は、削除する前に必ずバックアップを行ってください。<br>
+</p>
+</li>
+
+<li>
+<p class="title1">ファイルをアップロード</p>
+<p>
+配布アーカイブ内のファイルを、通常のインストール方法と同様にアップロードしてください。
+</p>
+</li>
+
+<li>
+<p class="title1">モジュールのアップデート</p>
+<p>
+管理者メニューのモジュール管理から、xsnsモジュールのアップデートを行ってください。
+</p>
+</li>
+
+</ol>
+
+<hr>
+
+<h4 class="title0"><a id="uninstall">アンインストール方法</a></h4>
+<p>
+管理者メニューのモジュール管理からアンインストールしてください。<br>
+<p class="red">※ 作成したコミュニティ、トピックなどのデータは全て削除されますので、必要な場合はバックアップを行ってください。</p>
+</p>
+
+
+<hr>
+
+<h4 class="title0"><a id="config">初期設定</a></h4>
+
+　「管理者メニュー」 → 「コミュニティ」 → 「一般設定」 で各種設定を行います。必要に応じて変更してください。
+
+<ul>
+
+<li>
+<p class="title2">画像/ファイルのアップロード先ディレクトリ</p>
+<p>
+アップロードする画像/ファイルは全てここに保存されます。<br>
+セキュリティのため、サーバーの公開ディレクトリ外の場所を指定してください。<br>
+<span class="red">※ 最後の / (スラッシュ)は不要です。</span><br>
+
+<p>初期状態では、<i>XOOPS_ROOT_PATH</i> /uploads/xsns になっています。</p>
+</p>
+</li>
+
+<li>
+<p class="title2">画像/ファイルの最大サイズ [bytes]</p>
+<p>
+アップロードする画像/ファイルの最大サイズをバイト単位で指定してください。
+</p>
+</li>
+
+<li>
+<p class="title2">画像の最大幅 [pixel]</p>
+<p>
+画像の最大幅をピクセル単位で指定してください。<br>
+このサイズを超える画像はアップロードできません。<br>
+</p>
+</li>
+
+<li>
+<p class="title2">画像の最大高さ [pixel]</p>
+<p>
+画像の最大高さをピクセル単位で指定してください。<br>
+このサイズを超える画像はアップロードできません。<br>
+</p>
+</li>
+
+<li>
+<p class="title2">アップロードを許可するファイルのMIMEタイプ</p>
+<p>
+アップロードを許可するファイルのMIMEタイプを｜で区切って入力してください。<br>
+設定可能なMIMEタイプの一覧は、<i>XOOPS_ROOT_PATH</i> /class/mimetypes.inc.php を参照してください。<br>
+</p>
+</li>
+
+<li>
+<p class="title2">画像の同時アップロード数の制限</p>
+<p>
+1つの投稿文に対する添付画像の最大数を指定します。<br>
+画像のアップロードを許可しない場合は0にしてください。<br>
+</p>
+</li>
+
+<li>
+<p class="title2">ファイルの同時アップロード数の制限</p>
+<p>
+1つの投稿文に対する添付ファイルの最大数を指定します。<br>
+ファイルのアップロードを許可しない場合は0にしてください。<br>
+</p>
+</li>
+
+<li>
+<p class="title2"><a id="config_mypage">アカウント情報ページをマイページに置き換える</a></p>
+<p>
+XOOPS標準のアカウント情報ページを、コミュニティの利用に特化したマイページに置き換えることができます。<br>
+
+XOOPS2.0系の場合、[はい]を選択すると以下のファイルの内容が変更されます。元に戻したい場合は再度[いいえ]を選択してください。<br>
+<p>
+　<i>XOOPS_ROOT_PATH</i> /userinfo.php<br>
+　<i>XOOPS_ROOT_PATH</i> /edituser.php<br>
+</p>
+<span class="red">※ PHPがセーフモードで動作している場合、XOOPS2.0系ではこの項目は設定できません。XOOSP2.1系は設定可能です。</span><br>
+<div class="box">
+<h5>○但し、レンタルサーバがXREAの場合</h5>
+<p>.htaccessを以下の内容で作成し、html/modules/xsns(もしくは変更したディレクトリ名)/以下に設置すれば,
+<br />XOOPS2.0系でも置き換えは可能です。
+<div class="box1">　AddHandler application/x-httpd-phpcgi .php</div>
+※参考　<a href="http://sb.xrea.com/showthread.php?t=10744" target="_blank">XREA&CORE SUPPORT</a></p></div><br />
+<span class="red">※ アカウント情報ページを置き換えない場合でも、本モジュールのサブメニューからマイページにアクセスすることは可能です。</span><br>
+<span class="red">※ 本モジュールを複数インストールした場合、本設定は複数のモジュールで行わないでください。</span>
+
+</p>
+</li>
+
+<li>
+<p class="title2">マイページをゲストに公開する</p>
+<p>
+ゲストによるマイページへのアクセスを禁止したい場合は、[いいえ]に設定してください。<br>
+xsnsをゲストに公開していない場合は、この設定に関わらずマイページは公開されません。<br>
+<br>
+<span class="red">※ この設定は、アカウント情報ページをマイページに置き換えていることで有効になります。</span>
+</p>
+</li>
+
+<li>
+<p class="title2">あしあと機能を使用する</p>
+<p>
+マイページに対するアクセスログ機能を使用するかどうかを指定します。
+</p>
+</li>
+
+<li>
+<p class="title2">ブログモジュールの選択</p>
+<p>
+マイページに友達のブログの最新エントリを表示することができます。<br>
+利用するブログモジュールを以下から選択してください。モジュールがインストールされていない場合は利用できません。<br>
+<br>
+　- うぇブログ (作者：tohokuaiki様）<br>
+　- <a href="http://www.kuri3.net/modules/mydownloads/singlefile.php?lid=18" target="_blank">うぇブログD3  (作者：hodaka様)</a><br>
+　- <a href="http://www.kowa.org/modules/mydownloads/singlefile.php?cid=3&lid=11" target="_blank">WordPress XOOPS Module （作者：のぶのぶ様）</a><br>
+　- <a href="http://www.kuri3.net/modules/mydownloads/singlefile.php?lid=23" target="_blank">d3blog （作者：hodaka様）</a><br>
+　- <a href="http://www.yamareco.com/weblog/xoops/" target="_blank">minidiary （作者：matoyan様）</a><br>
+<br>
+</p>
+</li>
+
+
+<li>
+<p class="title2">ブログモジュールのディレクトリ名</p>
+<p>
+ブログモジュールのディレクトリ名を変更している場合は、その値を入力してください。<br>
+空白にした場合はデフォルトのディレクトリ名になります。<br>
+</p>
+</li>
+
+<li>
+<p class="title2">人気度のランク設定</p>
+<p>
+人気度がこの値を超えると５つ星(最高ランク)になります。ユーザー数の規模に応じて変更してください。<br>
+<p>　人気度 ・・・ 対象コミュニティへのアクセス回数の平均値（過去30日以内）</p>
+</p>
+</li>
+
+<li>
+<p class="title2">更新頻度のランク設定</p>
+<p>
+更新頻度がこの値を超えると５つ星(最高ランク)になります。ユーザー数の規模に応じて変更してください。<br>
+<p>　更新頻度 ・・・ 対象コミュニティに投稿されたトピックおよびコメントの数の平均値（過去30日以内）</p>
+</p>
+</li>
+
+<li>
+<p class="title2">パンくずリストを表示する</p>
+<p>
+テーマでパンくずリストを表示するようにしている場合は[いいえ]に設定してください。
+</p>
+</li>
+
+</ul>
+
+<hr>
+
+<h4 class="title0"><a id="version">バージョン情報</a></h4>
+<ul>
+
+<li>2008.04.20 ver. 1.1.1 リリース</li>
+<p>- 利用可能なブログモジュールの一覧にminidiaryを追加</p>
+<p>- jpeg拡張子の画像をアップロードできない不具合を修正</p>
+<p>- プロフィールの編集が正しく行えない不具合を修正</p>
+<p>- モジュールの表示設定変更が正しく行えない不具合を修正</p>
+<p>- 未承認ユーザーのマイページの閲覧を制限するように修正</p>
+<p>- 特定の環境下でHTTP500エラーが発生する問題に対処</p>
+
+<li>2008.02.05 ver. 1.1.0 リリース</li>
+<p>- お知らせ情報（友達リスト登録の承認etc.）を表示するためのブロックを追加</p>
+<p>- 最新トピックブロックの内容が正しく表示されない不具合を修正</p>
+<p>- １つの投稿文に添付可能な画像/ファイルの最大数を指定できるように変更</p>
+<p>- ゲストによるマイページへのアクセスを制限するための設定項目を追加</p>
+<p>- 利用可能なブログモジュールの一覧にd3blogを追加</p>
+<p>- テンプレート全般の見直し</p>
+<p>- 言語定数ファイルの追加 (ja_utf8, english)</p>
+<p>- ALTSYSの言語定数管理に対応</p>
+<p>- d3pipesに対応 (最新トピック一覧の出力)</p>
+
+<li>2008.01.18 ver. 1.0.5 リリース</li>
+<p>- 特定のGDのバージョンで、画像のアップロード時に処理が停止してしまう問題に対処</p>
+<p>- 非公開コミュニティのファイルがダウンロードできない場合がある不具合を修正</p>
+
+<li>2007.12.27 ver. 1.0.4 リリース</li>
+<p>- トピックの表示が崩れる場合がある不具合を修正</p>
+<p>- IE6でレスのポップアップウィンドウの幅が狭くなる不具合を修正</p>
+
+<li>2007.12.13 ver. 1.0.3 リリース</li>
+<p>- 特定の条件下でトピックのコメントが正常に表示されなくなっていた不具合を修正</p>
+<p>- MySQLのStrictモード時の不具合を修正</p>
+
+<li>2007.12.04 ver. 1.0.2 リリース</li>
+<p>- MySQL3環境下での不具合を修正</p>
+
+<li>2007.12.03 ver. 1.0.1 リリース</li>
+<p>- PHPのセーフモード環境下での不具合を修正</p>
+
+<li>2007.11.28 ver. 1.0 リリース　</li>
+
+</ul>
+
+<hr>
+
+<h4 class="title0"><a id="licence">使用条件</a></h4>
+<p>
+本モジュールのライセンスは、XOOPSのライセンス(<a href="http://ja.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GPL</a>)に従います。<br />
+本モジュールの改変・再配布等については、<a href="http://ja.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GPL</a>に従って行ってください。
+</p>
+
+<hr>
+
+<h4 class="title0"><a id="acknowledgment">謝辞</a></h4>
+<p>
+本モジュールを作成するにあたり、画面のレイアウト、機能等は、（株）mixi様の<a href="http://mixi.jp/" target="_blank">mixi</a>,（株）手嶋屋様の<a href="http://openpne.jp/" target="_blank">OpenPNE</a>に多大な影響を受けておりますので、この場を借りて厚く御礼申し上げます。<br>
+
+また本モジュールは、<a href="http://psx.lsse.kyutech.ac.jp/kit/" target="_blank">PSX(Portal Site Xoops)〜九工大生のための学内ポータルサイト〜</a>を弊社が立ち上げる際に開発されたものですので、開発の機会を与えてくださった方々に厚く御礼申し上げます。<br>
+</p>
+
+<br />
+<p>
+○<strong>respopup.js（一部改変) aki 様</strong><br />
+コメントのポップアップ表示部に使用しております。<br />
+<a href="http://akid.s17.xrea.com/" target="_blank">p2 - PHPでつくった2ch Viewer</a><br />
+ライセンス:<a href="http://ja.wikipedia.org/wiki/MIT_License" target="_blank">MIT license</a><br />
+<br />
+○<strong>D3モジュール作成　G.I.JOE 様</strong><br />
+D3モジュールを作成するに当たり、picoなど参考にさせていただいております。<br />
+<a href="http://xoops.peak.ne.jp/" target="_blank">PEAK XOOPS - Support&Experiment</a><br />
+ライセンス:<a href="http://ja.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GPL</a><br /><br />
+○<strong>icon　famfamfam　Mark James 様</strong><br />
+ファイル添付時のアイコンとして使用しております。<br />
+<a href="http://www.famfamfam.com/" target="_blank">famfamfam.com: Home</a><br />
+ライセンス：<a href="http://creativecommons.org/licenses/by/2.5/" target="_blank">Creative Commons Attribution 2.5 License</a>
+</p>
+<hr>
+
+<h4 class="title0"><a id="contact">連絡先</a></h4>
+
+<ul>
+<li>インストール、設定などでお悩みの方はこちらからどうぞ。 <br />
+    →　<a href="http://www.bratech.co.jp/xoops_demo/" target="_blank">コミュニティモジュールデモサイト内のサポートコミュニティ</a><br />
+    →　<a href="https://sourceforge.jp/forum/forum.php?forum_id=13310" target="_blank">Sourceforge内サポートフォーラム</a><br /><br /></li>
+
+<li>バグを発見された場合はこちらからどうぞ。<br />
+    →　<a href="https://sourceforge.jp/forum/forum.php?forum_id=13311 " target="_blank">バグ報告フォーラム</a><br /><br /></li>
+<li>その他 コミュニティモジュール　に関するお問い合わせはこちらまでお願いします。 <br />
+　E-mail：info@bratech.co.jp</li>
+
+</ul>
+<hr>
+
+<div style="text-align:center; padding:10px;"><a href="#index">目次へ</a></div>
+
+</body>
+</html>
