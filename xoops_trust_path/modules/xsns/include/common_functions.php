@@ -33,7 +33,7 @@ function xsns_is_friend($mydirname, $uid_from, $uid_to)
 	$db =& Database::getInstance();
 	
 	$sql = "SELECT c_friend_id FROM ". $db->prefix($mydirname.'_c_friend').
-			" WHERE uid_from='".intval(uid_from)."' AND uid_to='".intval($uid_to)."'";
+			" WHERE uid_from='".intval($uid_from)."' AND uid_to='".intval($uid_to)."'";
 	if(($rs=$db->query($sql)) && $db->getRowsNum($rs)==1){
 		return true;
 	}
