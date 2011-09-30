@@ -35,7 +35,7 @@ if( ! headers_sent() ) {
 	
 	if($is_template){
 		require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-		$tpl =& new XoopsTpl() ;
+		$tpl = new XoopsTpl() ;
 		$tpl->display('db:'.$mydirname.'_'.$filename) ;
 	}
 	else{

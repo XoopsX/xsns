@@ -74,7 +74,7 @@ function dispatch()
 	// 小カテゴリ
 	echo "<div style='text-align:center; font-size:14px; padding-bottom:15px;'><b>"._AM_XSNS_CATEGORY2._AM_XSNS_CATEGORY_LIST."</b></div>";
 	
-	$token_handler =& new XoopsMultiTokenHandler();
+	$token_handler = new XoopsMultiTokenHandler();
 	$token_add =& $token_handler->create('CATEGORY_ADD');
 	$token_edit =& $token_handler->create('CATEGORY_EDIT');
 	

@@ -97,7 +97,7 @@ function assignFormHeader($form_name, $method='post', $target='', $action='', $u
 		}
 	}
 	if(!is_null($token_name)){
-		$token_handler =& new XoopsMultiTokenHandler();
+		$token_handler = new XoopsMultiTokenHandler();
 		$token =& $token_handler->create($token_name);
 		$form .= $token->getHtml();
 	}

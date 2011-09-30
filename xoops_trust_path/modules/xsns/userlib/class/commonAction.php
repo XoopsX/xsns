@@ -97,7 +97,7 @@ function getFormHeader($method='post', $target='', $action='', $upload=false, $h
 		}
 	}
 	if(!is_null($token_name)){
-		$token_handler =& new XoopsMultiTokenHandler();
+		$token_handler = new XoopsMultiTokenHandler();
 		$token =& $token_handler->create($token_name);
 		$form .= $token->getHtml();
 	}
@@ -219,7 +219,7 @@ function getPageSelector($base_url, $start, $limit, $data_count, $total, $color=
 
 function validateToken($name, $clearIfValid=true)
 {
-	$token_handler =& new XoopsMultiTokenHandler();
+	$token_handler = new XoopsMultiTokenHandler();
 	return $token_handler->autoValidate($name, $clearIfValid);
 }
 //------------------------------------------------------------------------------

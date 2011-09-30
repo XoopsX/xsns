@@ -127,9 +127,9 @@ class XsnsTopicHandler extends XsnsRootHandler
 			if ($result = $this->db->query($sql)) {
 				$numrows = $this->db->getRowsNum($result);
 				if ($numrows == 1) {
-					$obj =& new $this->obj_class();
+					$obj = new $this->obj_class();
 					$obj->assignVars($this->db->fetchArray($result));
-					$ret =& $obj;
+					$ret = $obj;
 				}
 			}
 		}

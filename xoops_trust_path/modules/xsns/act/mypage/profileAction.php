@@ -61,7 +61,7 @@ function dispatch()
 	
 	$elements = array();
 	
-	$token_handler =& new XoopsMultiTokenHandler();
+	$token_handler = new XoopsMultiTokenHandler();
 	$token = new XoopsFormToken($token_handler->create('edituser'));
 	
 	// Hidden

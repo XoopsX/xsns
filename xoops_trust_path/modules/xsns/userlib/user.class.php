@@ -472,9 +472,9 @@ class XsnsUserHandler extends XoopsUserHandler
 			$sql = 'SELECT * FROM '.$this->db->prefix('users').' WHERE uid='.intval($uid);
 			if ($result = $this->db->query($sql)) {
 				if ($this->db->getRowsNum($result) == 1) {
-					$user =& new XsnsUser();
+					$user = new XsnsUser();
 					$user->assignVars($this->db->fetchArray($result));
-					$ret =& $user;
+					$ret = $user;
 				}
 			}
 		}

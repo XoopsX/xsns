@@ -9,7 +9,7 @@ function dispatch()
 	}
 	
 	require_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php'; 
-	$token_handler =& new XoopsMultiTokenHandler();
+	$token_handler = new XoopsMultiTokenHandler();
 	$token = new XoopsFormToken($token_handler->create('COMMUNITY_EDIT')); 
 	// Hidden 
 	$token_tag = '<input type="hidden" name="'.$token->_name.'" value="'.$token->_value.'">';

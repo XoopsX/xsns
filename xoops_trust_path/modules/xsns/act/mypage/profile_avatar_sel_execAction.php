@@ -60,7 +60,7 @@ function dispatch()
 	
 	$avt_handler =& xoops_gethandler('avatar');
 	if($avatar_id > 0){
-		$criteria =& new CriteriaCompo(new Criteria('a.avatar_id', $avatar_id));
+		$criteria = new CriteriaCompo(new Criteria('a.avatar_id', $avatar_id));
 		$criteria->add(new Criteria('a.avatar_type', 'S'));
 		$avatars =& $avt_handler->getObjects($criteria);
 		if (!is_array($avatars) || !is_object($avatars[0])) {
@@ -86,7 +86,7 @@ function dispatch()
 		}
 		if ($oldavatar && $oldavatar != 'blank.gif' && preg_match("/^cavt/", strtolower($oldavatar))) {
 			$ts =& MyTextSanitizer::getInstance();
-			$criteria =& new CriteriaCompo(new Criteria('avatar_file', $ts->addSlashes($oldavatar)));
+			$criteria = new CriteriaCompo(new Criteria('avatar_file', $ts->addSlashes($oldavatar)));
 			$criteria->add(new Criteria('avatar_type', 'C'));
 			$avatars =& $avt_handler->getObjects($criteria);
 			if (is_object($avatars[0])) {

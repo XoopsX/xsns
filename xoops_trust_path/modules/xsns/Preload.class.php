@@ -42,7 +42,7 @@ function XsnsPostFilterFunction($mydirname)
 	require_once dirname(__FILE__).'/Service.class.php';
 	$service_class = ucfirst($mydirname).'_Service';
 	if(class_exists($service_class)){
-		$service =& new $service_class();
+		$service = new $service_class();
 		if(is_object($service)){
 			$service->prepare();
 			$root->mServiceManager->addService(ucfirst($mydirname), $service);

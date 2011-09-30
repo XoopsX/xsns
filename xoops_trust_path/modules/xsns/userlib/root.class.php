@@ -501,9 +501,9 @@ class XsnsRootHandler
 			if ($result = $this->db->query($sql)) {
 				$numrows = $this->db->getRowsNum($result);
 				if ($numrows == 1) {
-					$obj =& new $this->obj_class();
+					$obj = new $this->obj_class();
 					$obj->assignVars($this->db->fetchArray($result));
-					$ret =& $obj;
+					$ret = $obj;
 				}
 			}
 		}
@@ -530,13 +530,13 @@ class XsnsRootHandler
 			return $ret;
 		}
 		while ($row = $this->db->fetchArray($result)) {
-			$obj =& new $this->obj_class();
+			$obj = new $this->obj_class();
 			$obj->assignVars($row);
 			if (!$id_as_key) {
-				$ret[] =& $obj;
+				$ret[] = $obj;
 			}
 			else {
-				$ret[$row[$this->primary_key]] =& $obj;
+				$ret[$row[$this->primary_key]] = $obj;
 			}
 			unset($obj);
 		}

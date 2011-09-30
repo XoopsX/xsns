@@ -130,7 +130,7 @@ function b_xsns_recent_topic_show($options)
 	
 	if(empty($options['disable_renderer'])){
 		require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-		$tpl =& new XoopsTpl();
+		$tpl = new XoopsTpl();
 		$tpl->assign('block', $block);
 		$ret['content'] = $tpl->fetch('db:'.$mydirname.'_block_recent_topic.html');
 		return $ret;
@@ -149,7 +149,7 @@ function b_xsns_recent_topic_edit($options)
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 	
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign(array(
 		'mydirname' => $mydirname,
 		'item_limit' => $item_limit,
@@ -201,7 +201,7 @@ function b_xsns_information_show($options)
 		}
 	}
 	
-	$tpl =& new XoopsTpl();
+	$tpl = new XoopsTpl();
 	$tpl->assign('block', $block);
 	
 	$ret = array();
@@ -217,7 +217,7 @@ function b_xsns_information_edit($options)
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 	
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign(array(
 		'mydirname' => $mydirname,
 	));

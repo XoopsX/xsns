@@ -58,7 +58,7 @@ function dispatch()
 		}
 		echo $pager_html;
 		
-		$token_handler =& new XoopsMultiTokenHandler();
+		$token_handler = new XoopsMultiTokenHandler();
 		$token =& $token_handler->create('FILE_DELETE');
 		
 		echo "<tr class='foot'>".

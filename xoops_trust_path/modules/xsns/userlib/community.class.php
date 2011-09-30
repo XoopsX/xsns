@@ -424,7 +424,7 @@ class XsnsCommunityHandler extends XsnsRootHandler
 		$category_handler =& XsnsCategoryHandler::getInstance();
 		
 		while ($row = $this->db->fetchArray($result)) {
-			$obj =& new $this->obj_class();
+			$obj = new $this->obj_class();
 			$obj->assignVars($row);
 			$cid = $obj->getVar('c_commu_id');
 			$obj_list[$cid] = $obj;

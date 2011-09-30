@@ -54,7 +54,7 @@ class Xsns_Profile_avatar_up_Action extends Xsns_Mypage_Action
 			$xoopsConfigUser =& $config_handler->getConfigsByCat(XOOPS_CONF_USER);
 		}
 		
-		$token_handler =& new XoopsMultiTokenHandler();
+		$token_handler = new XoopsMultiTokenHandler();
 		
 		if ($xoopsConfigUser['avatar_allow_upload'] == 1 && $xoopsUser->getVar('posts') >= $xoopsConfigUser['avatar_minposts']) {
 			$form = new XoopsThemeForm(_MD_XSNS_PROFILE_AVATAR_EDIT, 'avatarform', XSNS_URL_MYPAGE_PROFILE);
