@@ -29,11 +29,11 @@ function XsnsPostFilterFunction($mydirname)
 			$file = XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/kernel/xsns.class.php';
 			
 			// userinfo.php
-			$root->mDelegateManager->add('Legacypage.Userinfo.Access', 'XsnsFunction::userinfo', XCUBE_DELEGATE_PRIORITY_FIRST, $file);
+			$root->mDelegateManager->add('Legacypage.Userinfo.Access', 'XsnsFunction::userinfo', XCUBE_DELEGATE_PRIORITY_NORMAL-1, $file);
 			
 			if($root->mContext->mUser->isInRole('Site.RegisteredUser')){
 				// edituser.php
-				$root->mDelegateManager->add('Legacypage.Edituser.Access', 'XsnsFunction::edituser', XCUBE_DELEGATE_PRIORITY_FIRST, $file);
+				$root->mDelegateManager->add('Legacypage.Edituser.Access', 'XsnsFunction::edituser', XCUBE_DELEGATE_PRIORITY_NORMAL-1, $file);
 			}
 		}
 	}
