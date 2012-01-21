@@ -1,5 +1,8 @@
 ﻿オリジナルのxsns-1.1.1からの、ハック内容一覧
 
+- 2012/ 1/21
+-- textsanitizerを変更し、[code] [quote] [url] [siteurl] [img] [siteimg] 等を使えるようにした。
+
 - 2012/ 1/20
 -- whatsnew モジュール用のプラグインを追加。whatsnew側に追加ファイル不要。
 

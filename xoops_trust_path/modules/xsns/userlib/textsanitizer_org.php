@@ -46,17 +46,12 @@ class XsnsTextSanitizer extends MyTextSanitizer
 	
 	function codePreConv($text, $xcode = 1)
 	{
- 		return $text;
+		return $text;
 	}
 	
-	function codeConv($text, $xcode = 1, $image = 1)
-	{
-            if ($xcode != 0) {
-            	$patterns = "/\[code](.*)\[\/code\]/esU";
-               	$replacements = "'<div class=\"xoopsCode\"><pre><code>'.'$1'.'</code></pre></div>'";
-            	$text = preg_replace($patterns, $replacements, $text);
-	    }
- 		return $text;
+    function codeConv($text, $xcode = 1, $image = 1)
+    {
+		return $text;
 	}
 	
 	function &xoopsCodeDecode(&$text, $allowimage = 1)
@@ -64,16 +59,6 @@ class XsnsTextSanitizer extends MyTextSanitizer
 		$patterns = array();
 		$replacements = array();
 		
-        $patterns[] = "/\[siteurl=(['\"]?)([^\"'<>]*)\\1](.*)\[\/siteurl\]/sU";
-        $replacements[] = '<a href="'.XOOPS_URL.'/\\2" target="_blank">\\3</a>';
-        $patterns[] = "/\[url=(['\"]?)(http[s]?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
-        $replacements[] = '<a href="\\2" target="_blank">\\3</a>';
-        $patterns[] = "/\[url=(['\"]?)(ftp?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
-        $replacements[] = '<a href="\\2" target="_blank">\\3</a>';
-        $patterns[] = "/\[url=(['\"]?)([^\"'<>]*)\\1](.*)\[\/url\]/sU";
-        $replacements[] = '<a href="http://\\2" target="_blank">\\3</a>';
-        $patterns[] = "/\[email]([^;<>\*\(\)\"']*)\[\/email\]/sU";
-        $replacements[] = '<a href="mailto:\\1">\\1</a>';
 		$patterns[] = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
 		$replacements[] = '<span style="color: #\\2;">\\3</span>';
 		$patterns[] = "/\[size=(['\"]?)([a-z0-9-]*)\\1](.*)\[\/size\]/sU";
@@ -88,34 +73,6 @@ class XsnsTextSanitizer extends MyTextSanitizer
 		$replacements[] = '<u>\\1</u>';
 		$patterns[] = "/\[d](.*)\[\/d\]/sU";
 		$replacements[] = '<del>\\1</del>';
-        $patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[img]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1 id=(['\"]?)([0-9]*)\\3]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[img id=(['\"]?)([0-9]*)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[siteimg align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
-        $patterns[] = "/\[siteimg]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
-        if ($allowimage != 1) {
-            $replacements[] = '<a href="\\3" target="_blank">\\3</a>';
-            $replacements[] = '<a href="\\1" target="_blank">\\1</a>';
-            $replacements[] = '<a href="'.XOOPS_URL.'/image.php?id=\\4" target="_blank">\\5</a>';
-            $replacements[] = '<a href="'.XOOPS_URL.'/image.php?id=\\2" target="_blank">\\3</a>';
-            $replacements[] = '<a href="' . XOOPS_URL . '/\\3" target="_blank">' . XOOPS_URL . '/\\3</a>';
-            $replacements[] = '<a href="' . XOOPS_URL . '/\\1" target="_blank">' . XOOPS_URL . '/\\1</a>';
-        } else {
-            $replacements[] = '<img src="\\3" align="\\2" alt="" />';
-            $replacements[] = '<img src="\\1" alt="" />';
-            $replacements[] = '<img src="'.XOOPS_URL.'/image.php?id=\\4" align="\\2" alt="\\5" />';
-            $replacements[] = '<img src="'.XOOPS_URL.'/image.php?id=\\2" alt="\\3" />';
-            $replacements[] = '<img src="' . XOOPS_URL . '/\\3" align="\\2" alt="" />';
-            $replacements[] = '<img src="' . XOOPS_URL . '/\\1" alt="" />';
-        }
-	$patterns[] = "/\[quote]/sU";
-        $replacements[] = '<div class="paragraph">'._QUOTEC.'<div class="xoopsQuote"><blockquote>';
-        $patterns[] = "/\[\/quote]/sU";
-        $replacements[] = '</blockquote></div></div>';
-        // [quote sitecite=]
-        $patterns[] = "/\[quote sitecite=([^\"'<>]*)\]/sU";
-        $replacements[] = '<div class="paragraph">'._QUOTEC.'<div class="xoopsQuote"><blockquote cite="'.XOOPS_URL.'/\\1">';
 		
 		$ret = preg_replace($patterns, $replacements, $text);
 		return $ret;
@@ -126,17 +83,6 @@ class XsnsTextSanitizer extends MyTextSanitizer
 		$patterns = array();
 		$replacements = array();
 		
-        $patterns[] = "/\[siteurl=(['\"]?)([^\"'<>]*)\\1](.*)\[\/siteurl\]/sU";
-        $replacements[] = '\\3';
-        $patterns[] = "/\[url=(['\"]?)(http[s]?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
-        $replacements[] = '\\3';
-        $patterns[] = "/\[url=(['\"]?)(ftp?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
-        $replacements[] = '\\3';
-        $patterns[] = "/\[url=(['\"]?)([^\"'<>]*)\\1](.*)\[\/url\]/sU";
-        $replacements[] = '\\3';
-        $patterns[] = "/\[email]([^;<>\*\(\)\"']*)\[\/email\]/sU";
-        $replacements[] = '\\1';
-
 		$patterns[] = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
 		$replacements[] = '\\3';
 		$patterns[] = "/\[size=(['\"]?)([a-z0-9-]*)\\1](.*)\[\/size\]/sU";
@@ -151,29 +97,6 @@ class XsnsTextSanitizer extends MyTextSanitizer
 		$replacements[] = '\\1';
 		$patterns[] = "/\[d](.*)\[\/d\]/sU";
 		$replacements[] = '\\1';
-
-        $patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[img]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1 id=(['\"]?)([0-9]*)\\3]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[img id=(['\"]?)([0-9]*)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $patterns[] = "/\[siteimg align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
-        $patterns[] = "/\[siteimg]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
-        $replacements[] = '\\3';
-        $replacements[] = '\\1';
-        $replacements[] = '\\5';
-        $replacements[] = '\\3';
-        $replacements[] = '\\3';
-        $replacements[] = '\\1';
-
-	$patterns[] = "/\[code](.*)\[\/code\]/esU";
-	$replacements[] = '\\1';
-        $patterns[] = "/\[quote]/sU";
-        $replacements[] = '<div class="paragraph">'._QUOTEC.'<div class="xoopsQuote"><blockquote>';
-        $patterns[] = "/\[\/quote]/sU";
-        $replacements[] = '</blockquote></div></div>';
-        // [quote sitecite=]
-        $patterns[] = "/\[quote sitecite=([^\"'<>]*)\]/sU";
-        $replacements[] = '<div class="paragraph">'._QUOTEC.'<div class="xoopsQuote"><blockquote cite="'.XOOPS_URL.'/\\1">';
 		
 		$ret = preg_replace($patterns, $replacements, $text);
 		$ret = $this->breakLongHalfString($ret);
