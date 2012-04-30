@@ -1,5 +1,8 @@
 ﻿オリジナルのxsns-1.1.1からの、ハック内容一覧
 
+- 2012/ 4/29
+-- バージョン番号加算。
+
 - 2012/ 1/21
 -- textsanitizerを変更し、[code] [quote] [url] [siteurl] [img] [siteimg] 等を使えるようにした。
 
