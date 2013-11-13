@@ -84,14 +84,14 @@ function dispatch()
 			$topic_count_all = $user->getTopicCount();
 			
 			// Friend's Blog List
-			$blog_list =& $user->getFriendBlogList($blog_limit, 0, &$blog_count_all);
+			$blog_list =& $user->getFriendBlogList($blog_limit, 0, $blog_count_all);
 		}
 		else{
 			$topic_list = array();
 			$topic_count_all = 0;
 			
 			// My Blog List
-			$blog_list =& $user->getMyBlogList($blog_limit, 0, &$blog_count_all);
+			$blog_list =& $user->getMyBlogList($blog_limit, 0, $blog_count_all);
 		}
 	}
 	else{

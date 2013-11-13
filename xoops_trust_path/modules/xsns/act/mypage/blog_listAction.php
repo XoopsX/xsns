@@ -23,7 +23,7 @@ function dispatch()
 		redirect_header(XOOPS_URL, 2, _NOPERM);
 	}
 	
-	$blog_list =& $user->getFriendBlogList($limit, $start, &$blog_count);
+	$blog_list =& $user->getFriendBlogList($limit, $start, $blog_count);
 	
 	$pager = $this->getPageSelector(XSNS_URL_MYPAGE.'&'.XSNS_ACTION_ARG.'=blog_list', 
 						$start, $limit, count($blog_list), $blog_count);

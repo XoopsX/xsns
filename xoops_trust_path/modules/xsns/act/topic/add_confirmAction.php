@@ -41,7 +41,7 @@ function dispatch()
 	
 	$errors = array();
 	
-	$this->checkParam(&$param, &$errors);
+	$this->checkParam($param, $errors);
 	
 	$new_topic =& $topic_handler->create();
 	$new_topic->setVar('name', $param['name']);
