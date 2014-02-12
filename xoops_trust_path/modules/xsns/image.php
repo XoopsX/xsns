@@ -27,9 +27,7 @@
 
 //if(strpos(@$_SERVER['HTTP_REFERER'], XOOPS_URL)!==false && isset($_GET['f'])){//if(isset($_GET['f'])){
 
-global $xoopsTpl;
-
-if (((HYP_K_TAI_RENDER || $xoopsTpl->_tpl_vars['wizmobile_ismobile']) && isset($_GET['f'])) || (strpos(@$_SERVER['HTTP_REFERER'], XOOPS_URL)!==false && isset($_GET['f']))) {
+if (isset($_GET['f']) && (strpos(@$_SERVER['HTTP_REFERER'], XOOPS_URL)!==false || (!empty($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', @$_SERVER['SERVER_ADDR']))))) {
 	$cache_limit = 3600;
 	
 	if(!preg_match('/[0-9a-z]{13}/i', $_GET['f'])){
