@@ -77,7 +77,7 @@ $modversion['config'][1] = array(
 	'description'	=> $constpref.'_FPATHDSC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'text' ,
-	'default'		=> XOOPS_UPLOAD_PATH.'/xsns',
+	'default'		=> XOOPS_TRUST_PATH.'/uploads/'.$mydirname,
 );
 $modversion['config'][] = array(
 	'name'			=> 'file_upload_size' ,
