@@ -115,7 +115,7 @@ function checkGD()
 	   || !isset($gdinfo['GIF Create Support']) || !$gdinfo['GIF Create Support'] || !function_exists('imagecreatefromgif')){
 		$errors[] = _AM_XSNS_GD_ERR_GIF. $gd_ver;
 	}
-	if(!isset($gdinfo['JPG Support']) || !$gdinfo['JPG Support'] || !function_exists('imagejpeg') || !function_exists('imagecreatefromjpeg')){
+	if(((!isset($gdinfo['JPG Support']) || !$gdinfo['JPG Support']) && (!isset($gdinfo['JPEG Support']) || !$gdinfo['JPEG Support'])) || !function_exists('imagejpeg') || !function_exists('imagecreatefromjpeg')){
 		$errors[] = _AM_XSNS_GD_ERR_JPG. $gd_ver;
 	}
 	if(!isset($gdinfo['PNG Support']) || !$gdinfo['PNG Support'] || !function_exists('imagepng') || !function_exists('imagecreatefrompng')){
