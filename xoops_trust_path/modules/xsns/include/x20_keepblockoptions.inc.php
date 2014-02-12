@@ -2,7 +2,7 @@
 // $Id$
 
 // Keep Block option values when update (by nobunobu) for XOOPS 2.0.x
-$db =& Database::getInstance() ;
+$db = XoopsDatabaseFactory::getDatabaseConnection() ;
 $query = "SELECT mid FROM ".$db->prefix('modules')." WHERE dirname='".$modversion['dirname']."' ";
 $result = $db->query($query);
 $record= $db->fetcharray($result);
@@ -62,7 +62,7 @@ if ($record) {
 	}
 	
 	for ($i = 1 ; $i <= $count ; $i++) {
-		$sql = "SELECT name,options FROM ".$db->prefix('newblocks')." WHERE mid=".$mid." AND func_num=".$i." AND show_func='".mysql_real_escape_string($modversion['blocks'][$i]['show_func'])."' AND func_file='".mysql_real_escape_string($modversion['blocks'][$i]['file'])."'";
+		$sql = "SELECT name,options FROM ".$db->prefix('newblocks')." WHERE mid=".$mid." AND func_num=".$i." AND show_func=".$db->quoteString($modversion['blocks'][$i]['show_func'])." AND func_file='".mysql_real_escape_string($modversion['blocks'][$i]['file'])."'";
 		$fresult = $db->query($sql);
 		$fblock = $db->fetchArray($fresult);
 		if ( isset( $fblock['options'] ) ) {

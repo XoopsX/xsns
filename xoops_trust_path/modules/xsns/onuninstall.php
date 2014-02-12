@@ -26,11 +26,12 @@ function xsns_onuninstall($module, $mydirname)
 		}
 	}
 
-	$db =& Database::getInstance() ;
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$mid = $module->getVar('mid') ;
 
 	// Tables
-	$sql_ver = floatval(substr(mysql_get_server_info(), 0, 3));
+	$get_server_info = (is_object($db->conn) && get_class($db->conn) === 'mysqli')? 'mysqli_get_server_info' : 'mysql_get_server_info';
+	$sql_ver = floatval(substr($get_server_info($db->conn), 0, 3));
 	if($sql_ver < 4){
 		$sql_file = 'mysql3.sql';
 	}
