@@ -22,7 +22,7 @@ function b_xsns_recent_topic_show($options)
 	$own_uid = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : -1;
 	
 	// naao from
-	//各トピの最新コメントIDを取得
+	//ｳﾆ･ﾈ･ﾔ､ﾎｺﾇｿｷ･ｳ･皈ﾈID､霹ﾀ
 	$sql = "SELECT c_commu_topic_id AS tid, MAX(c_commu_topic_comment_id) AS com_id FROM ". $db->prefix($mydirname.'_c_commu_topic_comment')." GROUP BY tid;";
 
 	$result = $db->query($sql);
