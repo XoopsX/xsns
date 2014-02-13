@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Action ŠÇ——pƒNƒ‰ƒX
+ * Action ´ÉÍýÍÑ¥¯¥é¥¹
  *
  * @package ActionManager
  */
 class XsnsActionManager
 {
 	/**
-	 * “KØ‚ÈAction‚ðŽÀs‚·‚é
+	 * Å¬ÀÚ¤ÊAction¤ò¼Â¹Ô¤¹¤ë
 	 * 
 	 * @param &$context
-	 * @param $target_dir	Actionƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠ–¼
-	 * @return string		View‚Ì–¼‘O
+	 * @param $target_dir	Action¥Õ¥¡¥¤¥ë¤Î¥Ç¥£¥ì¥¯¥È¥êÌ¾
+	 * @return string		View¤ÎÌ¾Á°
 	 */
 	function dispatch(&$context, $target_dir="")
 	{
-		// ‘ÎÛAction‚ÌŒˆ’è
+		// ÂÐ¾ÝAction¤Î·èÄê
 		if(isset($_REQUEST[XSNS_ACTION_ARG])){
 			$target = preg_replace("/[^0-9a-zA-Z_]/", "", $_REQUEST[XSNS_ACTION_ARG]);
 		}
@@ -28,17 +28,17 @@ class XsnsActionManager
 			$target_dir = $target_dir.'/';
 		}
 		
-		// ‘ÎÛActionƒNƒ‰ƒX–¼Aƒtƒ@ƒCƒ‹–¼‚ðŒˆ’è
+		// ÂÐ¾ÝAction¥¯¥é¥¹Ì¾¡¢¥Õ¥¡¥¤¥ëÌ¾¤ò·èÄê
 		$actionFile  = XSNS_ACTION_DIR. $target_dir. $target. "Action.php";
 		
-		// ‘ÎÛƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý
+		// ÂÐ¾Ý¥Õ¥¡¥¤¥ëÆÉ¤ß¹þ¤ß
 		if (is_readable($actionFile) && is_file($actionFile)) {
 			require_once($actionFile);
 			$actionClass = "Xsns_".ucfirst($target)."_Action";
-			// ‘ÎÛƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒXì¬
+			// ÂÐ¾Ý¥¯¥é¥¹¥¤¥ó¥¹¥¿¥ó¥¹ºîÀ®
 			if (class_exists($actionClass)) {
 				$o = new $actionClass($context);
-				// ‘ÎÛƒNƒ‰ƒX‚Ìdispatchƒƒ\ƒbƒhŽÀs
+				// ÂÐ¾Ý¥¯¥é¥¹¤Îdispatch¥á¥½¥Ã¥É¼Â¹Ô
 				if (method_exists($o, "dispatch")) {
 					return $o->dispatch();
 				}
