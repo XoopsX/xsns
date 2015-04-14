@@ -24,7 +24,7 @@ function xsns_search($mydirname, $queryarray, $andor, $limit, $offset, $userid)
 	$perm_arr = array();
 	$ret = array();
 	
-	$myts =& MyTextSanitizer::getInstance();
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 	$own_uid = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : -1;
 	
 	$count = is_array($queryarray) ? count($queryarray) : 0;

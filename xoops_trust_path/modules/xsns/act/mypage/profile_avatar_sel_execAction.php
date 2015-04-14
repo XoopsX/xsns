@@ -85,7 +85,7 @@ function dispatch()
 			require_once XOOPS_ROOT_PATH.'/footer.php';
 		}
 		if ($oldavatar && $oldavatar != 'blank.gif' && preg_match("/^cavt/", strtolower($oldavatar))) {
-			$ts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $ts =& MyTextSanitizer::sGetInstance()) || $ts =& MyTextSanitizer::getInstance();
 			$criteria = new CriteriaCompo(new Criteria('avatar_file', $ts->addSlashes($oldavatar)));
 			$criteria->add(new Criteria('avatar_type', 'C'));
 			$avatars =& $avt_handler->getObjects($criteria);
