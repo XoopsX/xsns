@@ -69,7 +69,7 @@ function dispatch()
 	$sess_handler =& XsnsSessionHandler::getInstance();
 	$comment_temp = $sess_handler->getVar('comment_body');
 	$sess_handler->clearVars();
-	$ts =& XsnsTextSanitizer::getInstance();
+	$ts =& XsnsTextSanitizer::sGetInstance();
 	
 	$default = array(
 		'comment' => !empty($comment_temp) ? $ts->makeTboxData4PreviewInForm($comment_temp) : '',

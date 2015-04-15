@@ -33,7 +33,7 @@ function dispatch()
 {
 	require XSNS_FRAMEWORK_DIR.'/global.php';
 	require_once XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/user.php';
-	$ts =& XsnsTextSanitizer::getInstance();
+	$ts =& XsnsTextSanitizer::sGetInstance();
 	
 	if($this->isGuest() || !$this->validateToken('edituser')){
 		redirect_header(XSNS_URL_MYPAGE, 3, _US_NOEDITRIGHT);

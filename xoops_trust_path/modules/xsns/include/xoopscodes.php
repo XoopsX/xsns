@@ -79,7 +79,7 @@ function xsns_xoops_code_tarea($textarea_id, $cols=60, $rows=15, $suffix=null)
 */
 function xsns_xoops_smilies($textarea_id)
 {
-	$ts =& XsnsTextSanitizer::getInstance();
+	$ts =& XsnsTextSanitizer::sGetInstance();
 	$smiles = $ts->getSmileys();
 	if (empty($smiles)) {
 		$db =& Database::getInstance();

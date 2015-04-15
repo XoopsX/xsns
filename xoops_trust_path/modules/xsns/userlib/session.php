@@ -14,7 +14,7 @@ class XsnsSessionHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		global $mydirname;
 		static $instance = NULL;

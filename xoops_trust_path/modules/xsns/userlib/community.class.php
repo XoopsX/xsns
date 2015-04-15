@@ -375,7 +375,7 @@ class XsnsCommunityHandler extends XsnsRootHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){
@@ -464,7 +464,7 @@ class XsnsCommunityHandler extends XsnsRootHandler
 	
 	function checkParams($cid, $name, $info, $cat_id, $public_id)
 	{
-		$ts =& XsnsTextSanitizer::getInstance();
+		$ts =& XsnsTextSanitizer::sGetInstance();
 		$name = $ts->stripSlashesGPC($name);
 		
 		$this->errors = array();

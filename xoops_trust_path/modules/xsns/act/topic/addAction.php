@@ -28,7 +28,7 @@ function dispatch()
 	$sess_handler =& XsnsSessionHandler::getInstance();
 	$topic_temp = $sess_handler->getVar('topic');
 	$sess_handler->clearVars();
-	$ts =& XsnsTextSanitizer::getInstance();
+	$ts =& XsnsTextSanitizer::sGetInstance();
 	
 	$default = array(
 		'name' => isset($topic_temp['name']) ? $ts->makeTboxData4PreviewInForm($topic_temp['name']) : '',

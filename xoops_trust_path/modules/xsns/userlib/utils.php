@@ -5,21 +5,21 @@ class XsnsUtils
 
 //------------------------------------------------------------------------------
 
-function getUserTimestamp($datetime, $timeoffset="")
+public static function getUserTimestamp($datetime, $timeoffset="")
 {
 	return xoops_getUserTimestamp(strtotime($datetime), $timeoffset);
 }
 
 //------------------------------------------------------------------------------
 
-function getUserDatetime($datetime, $timeoffset="")
+public static function getUserDatetime($datetime, $timeoffset="")
 {
 	return date('Y-m-d H:i:s', XsnsUtils::getUserTimestamp($datetime, $timeoffset));
 }
 
 //------------------------------------------------------------------------------
 
-function getSelectBoxHtml($name, $options, $default=NULL)
+public static function getSelectBoxHtml($name, $options, $default=NULL)
 {
 	if(empty($name) || !is_array($options)){
 		return "";
@@ -41,7 +41,7 @@ function getSelectBoxHtml($name, $options, $default=NULL)
 
 //------------------------------------------------------------------------------
 
-function getRadioHtml($name, $options, $default=NULL)
+public static function getRadioHtml($name, $options, $default=NULL)
 {
 	if(empty($name) || !is_array($options)){
 		return "";

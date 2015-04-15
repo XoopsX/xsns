@@ -52,7 +52,7 @@ class XsnsAvatarHandler extends XoopsAvatarHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){

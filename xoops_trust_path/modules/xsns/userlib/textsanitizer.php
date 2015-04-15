@@ -35,12 +35,18 @@ class XsnsTextSanitizer extends MyTextSanitizer
 {
 //	var $url_len_max = XSNS_URL_LENGTH_MAX;
 	
-	function &getInstance()
+	public static function &sGetInstance()
 	{
 		static $instance;
 		if (!isset($instance)) {
 			$instance = new XsnsTextSanitizer();
 		}
+		return $instance;
+	}
+	
+	function &getInstance()
+	{
+		$instance =& self::sGetInstance();
 		return $instance;
 	}
 	

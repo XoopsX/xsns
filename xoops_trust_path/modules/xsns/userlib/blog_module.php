@@ -50,7 +50,7 @@ class XsnsBlogModuleManager
 		}
 	}
 
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){
@@ -103,7 +103,7 @@ class XsnsBlogModuleManager
 	
 	function &getMyBlogList($uid, $limit, $start, &$blog_count)
 	{
-		$ts =& XsnsTextSanitizer::getInstance();
+		$ts =& XsnsTextSanitizer::sGetInstance();
 		$ret = array();
 		$blog_module =& $this->getModule();
 		
@@ -168,7 +168,7 @@ class XsnsBlogModuleManager
 	
 	function &getFriendBlogList($uid, $limit, $start, &$blog_count)
 	{
-		$ts =& XsnsTextSanitizer::getInstance();
+		$ts =& XsnsTextSanitizer::sGetInstance();
 		$ret = array();
 		$blog_module =& $this->getModule();
 		

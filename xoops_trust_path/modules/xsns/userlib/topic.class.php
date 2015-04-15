@@ -107,7 +107,7 @@ class XsnsTopicHandler extends XsnsRootHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){
@@ -140,7 +140,7 @@ class XsnsTopicHandler extends XsnsRootHandler
 	
 	function &getListForCommunity($cid, $limit=0, $start=0, $get_body=false)
 	{
-		$ts =& XsnsTextSanitizer::getInstance();
+		$ts =& XsnsTextSanitizer::sGetInstance();
 		$image_handler =& XsnsImageHandler::getInstance();
 		$file_handler =& XsnsFileHandler::getInstance();
 		

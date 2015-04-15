@@ -71,7 +71,7 @@ class XsnsRoot extends XoopsObject
 	function &getVar($key, $format = 's')
 	{
 		// for XsnsTextSanitizer
-//		$ts =& XsnsTextSanitizer::getInstance();
+//		$ts =& XsnsTextSanitizer::sGetInstance();
 		
 		if(!isset($this->vars[$key]['value'])){
 			$ret = NULL;
@@ -86,14 +86,14 @@ class XsnsRoot extends XoopsObject
 			case 'show':
 			case 'e':
 			case 'edit':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = $ts->htmlSpecialChars($ret);
 				break 1;
 			case 'p':
 			case 'preview':
 			case 'f':
 			case 'formpreview':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = $ts->htmlSpecialChars($ts->stripSlashesGPC($ret));
 				break 1;
 			case 'n':
@@ -106,7 +106,7 @@ class XsnsRoot extends XoopsObject
 			switch (strtolower($format)) {
 			case 's':
 			case 'show':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = $ts->displayTarea($ret, $this->doHtml, $this->doSmiley, $this->doXcode, $this->doImage, $this->doBr);
 				break 1;
 			case 'e':
@@ -115,18 +115,18 @@ class XsnsRoot extends XoopsObject
 				break 1;
 			case 'p':
 			case 'preview':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = $ts->previewTarea($ret, $this->doHtml, $this->doSmiley, $this->doXcode, $this->doImage, $this->doBr);
 				break 1;
 			case 'f':
 			case 'formpreview':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = htmlspecialchars($ts->stripSlashesGPC($ret), ENT_QUOTES);
 				break 1;
 			
 			// strip XOOPS Code ************************
 			case 'x':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = $ts->stripXoopsCode($ret);
 				break 1;
 			// *****************************************
@@ -151,12 +151,12 @@ class XsnsRoot extends XoopsObject
 				break 1;
 			case 'p':
 			case 'preview':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = $ts->stripSlashesGPC($ret);
 				break 1;
 			case 'f':
 			case 'formpreview':
-				$ts =& XsnsTextSanitizer::getInstance();
+				$ts =& XsnsTextSanitizer::sGetInstance();
 				$ret = htmlspecialchars($ts->stripSlashesGPC($ret), ENT_QUOTES);
 				break 1;
 			case 'n':
@@ -211,7 +211,7 @@ class XsnsRoot extends XoopsObject
 	function cleanVars()
 	{
 		// for XsnsTextSanitizer
-		$ts =& XsnsTextSanitizer::getInstance();
+		$ts =& XsnsTextSanitizer::sGetInstance();
 		foreach ($this->vars as $k => $v) {
 			$cleanv = $v['value'];
 			if (!$v['changed']) {

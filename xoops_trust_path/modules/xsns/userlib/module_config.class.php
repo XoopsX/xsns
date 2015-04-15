@@ -41,7 +41,7 @@ class XsnsModuleConfigHandler extends XsnsRootHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){
@@ -70,7 +70,7 @@ class XsnsModuleConfigHandler extends XsnsRootHandler
 		
 		$ret = array();
 		
-		$ts =& XsnsTextSanitizer::getInstance();
+		$ts =& XsnsTextSanitizer::sGetInstance();
 		$gperm_handler =& xoops_gethandler('groupperm');
 		$module_handler =& xoops_gethandler('module');
 		$groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;

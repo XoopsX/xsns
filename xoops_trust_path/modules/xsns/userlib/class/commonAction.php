@@ -21,7 +21,7 @@ function getTextRequest($key, $req_type=XSNS_REQUEST_POST, $sanitize_mode=NULL)
 		return NULL;
 	}
 	
-	$ts =& XsnsTextSanitizer::getInstance();
+	$ts =& XsnsTextSanitizer::sGetInstance();
 	switch($sanitize_mode){
 		case XOBJ_DTYPE_STRING:
 		case XOBJ_DTYPE_TXTBOX:

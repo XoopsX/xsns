@@ -16,7 +16,7 @@ class XsnsUser extends XoopsUser
 	{
 		$this->XoopsUser();
 		
-		$this->ts =& XsnsTextSanitizer::getInstance();
+		$this->ts =& XsnsTextSanitizer::sGetInstance();
 		
 		$this->handler = array(
 			'community' => XsnsCommunityHandler::getInstance(),
@@ -454,7 +454,7 @@ class XsnsUserHandler extends XoopsUserHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){

@@ -10,7 +10,7 @@ function dispatch()
 	$sess_handler =& XsnsSessionHandler::getInstance();
 	$commu_temp = $sess_handler->getVar('community');
 	$sess_handler->clearVars();
-	$ts =& XsnsTextSanitizer::getInstance();
+	$ts =& XsnsTextSanitizer::sGetInstance();
 	
 	$default = array(
 		'name' => isset($commu_temp['name']) ? $ts->makeTboxData4PreviewInForm($commu_temp['name']) : '',

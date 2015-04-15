@@ -74,7 +74,7 @@ class XsnsImageHandler extends XsnsRootHandler
 	
 	//--------------------------------------------------------------------------
 	
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance = NULL;
 		if(is_null($instance)){
@@ -192,7 +192,7 @@ class XsnsImageHandler extends XsnsRootHandler
 	
 	//--------------------------------------------------------------------------
 	
-	// ˆêŽž‰æ‘œ‚Ìíœ
+	// °ì»þ²èÁü¤Îºï½ü
 	function deleteImageTemp()
 	{
 		$image_list = $this->handler['session']->getVar('image');
@@ -211,7 +211,7 @@ class XsnsImageHandler extends XsnsRootHandler
 	
 	//--------------------------------------------------------------------------
 	
-	// ‰æ‘œ‚ÌƒAƒbƒvƒ[ƒh
+	// ²èÁü¤Î¥¢¥Ã¥×¥í¡¼¥É
 	function uploadImage($prefix, $target, $target_id, $thumb_id = XSNS_IMAGE_SIZE_M)
 	{
 		global $xoopsUser;
@@ -238,29 +238,29 @@ class XsnsImageHandler extends XsnsRootHandler
 				continue;
 			}
 			
-			// ˆêŽžƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ðƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ÉŠî‚Ã‚¢‚Ä•ÏŠ·
+			// °ì»þ¥Õ¥¡¥¤¥ë¤ÎÌ¾Á°¤ò¥¿¥¤¥à¥¹¥¿¥ó¥×¤Ë´ð¤Å¤¤¤ÆÊÑ´¹
 			$timestamp_name = uniqid($prefix).$index.'.'.$fileinfo['extension'];
 			$new_filename = $this->upload_dir.'/'.$timestamp_name;
 			if(!@rename($this->upload_dir.'/'.$image['filename'], $new_filename)){
 				continue;
 			}
 			
-			// ˆêŽžƒTƒ€ƒlƒCƒ‹‰æ‘œ(’†)‚ðƒŠƒl[ƒ€
+			// °ì»þ¥µ¥à¥Í¥¤¥ë²èÁü(Ãæ)¤ò¥ê¥Í¡¼¥à
 			$thumb_dir = $this->upload_dir.'/thumbnail'.$thumb_id.'/';
 			if(!@rename($thumb_dir.$image['filename'], $thumb_dir.$timestamp_name)){
 				continue;
 			}
 			
-			// ƒTƒ€ƒlƒCƒ‹‰æ‘œ(¬)‚ð¶¬
+			// ¥µ¥à¥Í¥¤¥ë²èÁü(¾®)¤òÀ¸À®
 			if(!$this->createThumbnail($new_filename, XSNS_IMAGE_SIZE_S, $this->upload_dir.'/thumbnail1/'.$timestamp_name)){
 				continue;
 			}
-			// ƒTƒ€ƒlƒCƒ‹‰æ‘œ(‘å)‚ð¶¬
+			// ¥µ¥à¥Í¥¤¥ë²èÁü(Âç)¤òÀ¸À®
 			if(!$this->createThumbnail($new_filename, XSNS_IMAGE_SIZE_L, $this->upload_dir.'/thumbnail3/'.$timestamp_name)){
 				continue;
 			}
 			
-			// •Û‘¶ƒtƒ@ƒCƒ‹–¼‚ðƒe[ƒuƒ‹‚ÉŠi”[
+			// ÊÝÂ¸¥Õ¥¡¥¤¥ëÌ¾¤ò¥Æ¡¼¥Ö¥ë¤Ë³ÊÇ¼
 			$new_file =& $this->create();
 			$new_file->setVars(array(
 				'filename' => $timestamp_name,
