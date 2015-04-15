@@ -1,9 +1,9 @@
 <div id="mainFrame">
 <{if $mydirname}><{include file="db:`$mydirname`_inc_breadcrumbs.html"}><{/if}>
 
-<table class="outer commuEdit">
-
 <{$form_commu_edit}>
+
+<table class="outer commuEdit">
 
 <tr><th colspan="2"><{$smarty.const._MD_XSNS_TITLE_INDEX_EDIT}></th></tr>
 
@@ -51,14 +51,14 @@
 <input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_EDIT}>">
 </td>
 </tr>
-</form>
 </table>
+</form>
 <br><br>
 
 <!-- Delete Form -->
 
-<table class="outer" width="100%">
 <{$form_commu_del}>
+<table class="outer" width="100%">
 <tr><th><{$smarty.const._MD_XSNS_TITLE_INDEX_DEL}></th></tr>
 <tr class="foot"><td class="submitFrame">
 
@@ -78,7 +78,7 @@
 
 <{/if}>
 </td></tr>
-</form>
 </table>
+</form>
 
 </div>

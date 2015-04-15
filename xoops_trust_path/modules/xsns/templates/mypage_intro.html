@@ -3,9 +3,9 @@
 <!-- User Menu -->
 <{if $mydirname}><{include file="db:`$mydirname`_inc_mypage_menu.html"}><{/if}>
 
-<table class="outer">
-
 <{$form_intro_add}>
+
+<table class="outer">
 
 <tr><th colspan="2"><{$smarty.const._MD_XSNS_TITLE_MYPAGE_INTRO_UNAME|sprintf:"`$user_name`"}></th></tr>
 <tr><td colspan="2" class="head" style="padding:10px 0 10px 10px;"><{$smarty.const._MD_XSNS_MYPAGE_INTRO_DESC}></th></tr>
@@ -19,8 +19,8 @@
 <input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_ADD}>">
 </td></tr>
 
-</form>
-
 </table>
+
+</form>
 
 </div>

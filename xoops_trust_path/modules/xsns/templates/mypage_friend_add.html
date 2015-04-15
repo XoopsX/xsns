@@ -3,6 +3,8 @@
 <!-- User Menu -->
 <{if $mydirname}><{include file="db:`$mydirname`_inc_mypage_menu.html"}><{/if}>
 
+<{$form_friend_add_submit}>
+
 <table class="outer memberReq">
 
 <tr><th colspan="3"><{$smarty.const._MD_XSNS_FRIEND_ADD}></td></tr>
@@ -24,7 +26,6 @@
 <td class="itemValue"><{$user.last_login|date_format:"%Y-%m-%d %H:%M:%S"}></td>
 </tr>
 
-<{$form_friend_add_submit}>
 <tr class="foot">
 <td class="submitFrame" colspan="3">
 <p>
@@ -37,7 +38,9 @@
 </p>
 </td>
 </tr>
-</form>
 
 </table>
+
+</form>
+
 </div>

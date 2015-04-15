@@ -53,19 +53,25 @@
 
 <{if !$confirm_data.accept_only}>
 
+<td class="buttonFrame">
 <{$confirm_data.form_accept}>
-<td class="buttonFrame"><input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CONFIRM_ACCEPT}>"></td>
+<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CONFIRM_ACCEPT}>">
 </form>
+</td>
 
+<td class="buttonFrame">
 <{$confirm_data.form_reject}>
-<td class="buttonFrame"><input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CONFIRM_REJECT}>"></td>
+<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CONFIRM_REJECT}>">
 </form>
+</td>
 
 <{else}>
 
+<td colspan="2" class="buttonFrame">
 <{$confirm_data.form_accept}>
-<td colspan="2" class="buttonFrame"><input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CONFIRM_ACCEPT}>"></td>
+<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CONFIRM_ACCEPT}>">
 </form>
+</td>
 
 <{/if}>
 

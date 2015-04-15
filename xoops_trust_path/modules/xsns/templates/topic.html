@@ -160,9 +160,9 @@
 <{if $commu.auth_level >= 4 && $comment_count_all < 1000}>
 
 <!-- Comment Form Table : Start -->
-<table class="outer topic">
-
 <{$form_res_add}>
+
+<table class="outer topic">
 
 <tr class="even"><th colspan="2"><a name="post"></a><{$smarty.const._MD_XSNS_TOPIC_WRITE}></th></tr>
 
@@ -223,9 +223,10 @@
 <td colspan="2" class="submitFrame"><input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_POST}>"></td>
 </tr>
 
+</table>
+
 </form>
 
-</table>
 <!-- Comment Form Table : End -->
 <br>
 

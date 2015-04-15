@@ -5,9 +5,9 @@
 <!-- User Menu -->
 <{if $mydirname}><{include file="db:`$mydirname`_inc_mypage_menu.html"}><{/if}>
 
-<table class="outer">
-
 <form action="index.php" method="post">
+
+<table class="outer">
 
 <!-- hidden -->
 <{foreach item=hidden from=$elements.hiddens}>
@@ -160,9 +160,10 @@
   <td class="even"><input type="submit" value="<{$smarty.const._US_SAVECHANGES}>"></td>
 </tr>
 
+</table>
+
 </form>
 
-</table>
 
 <{if $allow_self_delete}>
 <!-- user self delete -->

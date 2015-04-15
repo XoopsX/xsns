@@ -10,9 +10,9 @@
 <{if $avatarform}>
 
 <!-- Avatar Upload -->
-<table class="outer">
-
 <form name="<{$avatarform.name}>" action="<{$avatarform.action}>" method="<{$avatarform.method}>" <{$avatarform.extra}>>
+
+<table class="outer">
 
 <tr><th colspan="2"><{$smarty.const._MD_XSNS_PROFILE_AVATAR_UPLOAD}></th></tr>
 
@@ -36,9 +36,9 @@
 <{/if}>
 <{/foreach}>
 
-</form>
-
 </table>
+
+</form>
 
 <br>
 
@@ -47,8 +47,8 @@
 <{if $avatar_list}>
 
 <!-- Avatar Select -->
-<table class="outer">
 <form name="<{$uploadavatar.name}>" action="<{$uploadavatar.action}>" method="<{$uploadavatar.method}>" <{$uploadavatar.extra}>>
+<table class="outer">
 <{foreach item=element from=$uploadavatar.elements}>
   <{$element.body}>
 <{/foreach}>
@@ -67,8 +67,8 @@
 <{/if}>
 <{/foreach}>
 </tr>
-</form>
 </table>
+</form>
 
 <{/if}>
 

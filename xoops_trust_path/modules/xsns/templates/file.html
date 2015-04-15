@@ -1,5 +1,7 @@
 <div id="mainFrame">
 
+<{$form_del}>
+
 <table class="outer fileDel">
 <tr><th colspan="2"><{$form_data.title}></th></tr>
 
@@ -23,8 +25,6 @@
 <td class="itemValue"><{$form_data.time|date_format:"%Y-%m-%d %H:%M:%S"}></td>
 </tr>
 
-<{$form_del}>
-
 <tr class="foot">
 <td colspan="2" class="submitFrame">
 <p><{$form_data.desc}></p>
@@ -35,7 +35,8 @@
 </td>
 </tr>
 
+</table>
+
 </form>
 
-</table>
 </div>

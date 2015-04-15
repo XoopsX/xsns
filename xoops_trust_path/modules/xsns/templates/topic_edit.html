@@ -1,10 +1,10 @@
 <div id="mainFrame">
 <{if $mydirname}><{include file="db:`$mydirname`_inc_breadcrumbs.html"}><{/if}>
 
-<table class="outer topic">
-
 <!-- Edit Form -->
 <{$form_topic_edit}>
+
+<table class="outer topic">
 
 <tr><th colspan="2"><{$topic.lang_page_title}></th></tr>
 
@@ -125,9 +125,9 @@
 </td>
 </tr>
 
-</form>
-
 </table>
+
+</form>
 
 <br>
 
@@ -135,12 +135,12 @@
 
 <!-- Delete Form : Start -->
 <table class="outer topic">
-<{$form_topic_del}>
 <tr><th><{$smarty.const._MD_XSNS_TOPIC_DEL_DESC}></th></tr>
 <tr class="foot"><td class="submitFrame">
+<{$form_topic_del}>
 <input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_DEL}>">
-</td></tr>
 </form>
+</td></tr>
 </table>
 <!-- Delete Form : Start -->
 
