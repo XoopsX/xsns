@@ -65,7 +65,7 @@ class XsnsTextSanitizer extends MyTextSanitizer
  		return $text;
 	}
 	
-	function &xoopsCodeDecode(&$text, $allowimage = 1)
+	function &xoopsCodeDecode($text, $allowimage = 1)
 	{
 		$patterns = array();
 		$replacements = array();
