@@ -14,7 +14,7 @@ class XsnsActionManager
 	 * @param $target_dir	Actionファイルのディレクトリ名
 	 * @return string		Viewの名前
 	 */
-	function dispatch(&$context, $target_dir="")
+	public static function dispatch(&$context, $target_dir="")
 	{
 		// 対象Actionの決定
 		if(isset($_REQUEST[XSNS_ACTION_ARG])){

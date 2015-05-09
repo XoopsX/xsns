@@ -2,7 +2,7 @@
 
 class XsnsController
 {
-	function execute($target_dir="")
+	public static function execute($target_dir="")
 	{
 		$context = new XsnsContext();
 		
