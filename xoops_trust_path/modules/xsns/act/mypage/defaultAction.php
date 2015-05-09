@@ -170,7 +170,7 @@ function getUserInfo($uid)
 		$pmlink = NULL;
 	}
 	
-	$userrank =& $user->rank();
+	$userrank = $user->rank();
 	if ($userrank['image']) {
 		$ranktitle = $userrank['title'];
 		$rankimage = '<img src="'.XOOPS_UPLOAD_URL.'/'.$userrank['image'].'" alt="" />';
