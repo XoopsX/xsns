@@ -93,7 +93,7 @@ class XsnsModuleConfigHandler extends XsnsRootHandler
 		
 		$criteria = new CriteriaCompo(new Criteria('hassearch', 1));
 		$criteria->add(new Criteria('isactive', 1));
-		$mids =& array_keys($module_handler->getList($criteria));
+		$mids = array_keys($module_handler->getList($criteria));
 		$checked = array();
 		
 		// DBに登録されている設定順でモジュールを表示
