@@ -15,6 +15,8 @@ if( ! function_exists( 'xsns_new_base' ) ) {
 
 	function xsns_new_base( $mydirname, $limit=0, $offset=0 ) 
 	{
+		global $xoopsUser;
+		
 		if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 		$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
