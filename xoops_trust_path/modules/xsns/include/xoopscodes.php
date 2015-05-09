@@ -35,6 +35,23 @@
 */
 function xsns_xoops_code_tarea($textarea_id, $cols=60, $rows=15, $suffix=null)
 {
+	if (version_compare(LEGACY_BASE_VERSION, '2.2', '>='))
+	{
+		$params = array(
+			'name'  => $textarea_id,
+			'class' => 'bbcode',
+			'cols'  => $cols,
+			'rows'  => $rows,
+			'value' => isset($GLOBALS[$textarea_id]) ? $GLOBALS[$textarea_id] : null,
+			'id'    => $textarea_id
+		);
+		$html = '';
+		XCube_DelegateUtils::call('Site.TextareaEditor.BBCode.Show', new XCube_Ref($html), $params);
+		echo $html;
+
+		return;
+	}
+
 	$hiddentext = isset($suffix) ? 'xoopsHiddenText'.trim($suffix) : 'xoopsHiddenText';
 	echo "<a name='moresmiley'></a>\n";
 	
@@ -79,6 +96,11 @@ function xsns_xoops_code_tarea($textarea_id, $cols=60, $rows=15, $suffix=null)
 */
 function xsns_xoops_smilies($textarea_id)
 {
+	if (version_compare(LEGACY_BASE_VERSION, '2.2', '>='))
+	{
+		return;
+	}
+
 	$ts =& XsnsTextSanitizer::sGetInstance();
 	$smiles = $ts->getSmileys();
 	if (empty($smiles)) {
