@@ -15,7 +15,7 @@ class XsnsViewManager
 	 * @param $target		ÂÐ¾Ý¤ÎViewÌ¾
 	 * @return void
 	 */
-	function dispatch(&$context, $target_dir="", $target="")
+	public static function dispatch(&$context, $target_dir="", $target="")
 	{
 		$args = array();
 		if(!empty($target_dir)){
