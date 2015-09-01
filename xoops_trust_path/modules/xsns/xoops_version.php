@@ -7,8 +7,8 @@ if( file_exists( dirname(__FILE__).'/language/'.@$xoopsConfig['language'].'/modi
 $constpref = '_MI_'.strtoupper($mydirname);
 
 $modversion['name'] = $mydirname;
-$modversion['version'] = 1.14;
-$modversion['detailed_version'] = "1.14.3";
+$modversion['version'] = 1.15;
+$modversion['detailed_version'] = "1.15.0";
 $modversion['description'] = constant($constpref.'_MODULE_DESC');
 $modversion['credits'] = 'BraTech (http://www.bratech.co.jp/), XOOPS X(ten) Distibution ( https://github.com/XoopsX )';
 $modversion['author'] = 'A. Aikawa, XOOPS X developers';
