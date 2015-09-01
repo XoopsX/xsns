@@ -33,6 +33,12 @@ class XsnsFile extends XsnsRoot
 			'url' => XSNS_FILE_URL.'?id='.$id,
 			'url_del' => XSNS_URL_FILE.'&file_id='.$id,
 		);
+		if (defined('XSNS_FILENAME_ENCODING_AUTO') && defined('_CHARSET') && function_exists('mb_detect_encoding')) {
+			$enc = mb_detect_encoding($ret['caption'], 'EUC-JP, UTF-8');
+			if ($enc && $enc !== _CHARSET) {
+				$ret['caption'] = mb_convert_encoding($ret['caption'], _CHARSET, $enc);
+			}
+		}
 		return $ret;
 	}
 	

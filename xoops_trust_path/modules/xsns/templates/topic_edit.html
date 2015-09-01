@@ -74,7 +74,7 @@
 <{/section}>
 
 <div id="image_add">
-[<a href="javascript:void(0);" onclick="Xsns_addUploadForm(0, 3);"><{$smarty.const._MD_XSNS_IMAGE_ADD}></a>]
+[<a href="javascript:void(0);" onclick="Xsns_addUploadForm(0);"><{$smarty.const._MD_XSNS_IMAGE_ADD}></a>]
 </div>
 
 </td>
@@ -104,7 +104,7 @@
 <input type="file" name="files[]" size="40">
 </div>
 
-<{section name=cnt loop=$mod_config.file_form_limit-count($comment.files)-1}>
+<{section name=cnt start=0 loop=$mod_config.file_form_limit-1}>
 <div id="file<{$smarty.section.cnt.iteration+1}>" style="display:none;">
 <input type="file" name="files[]" size="40">
 </div>

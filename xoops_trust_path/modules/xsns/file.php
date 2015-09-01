@@ -63,27 +63,42 @@ if(!checkFile($path_file)){
 
 $saved_filename = rawurldecode($org_filename);
 
+if (defined('_CHARSET')) {
+	if (defined('XSNS_FILENAME_ENCODING_AUTO') && function_exists('mb_detect_encoding')) {
+		$enc = mb_detect_encoding($saved_filename, 'EUC-JP, UTF-8');
+		if ($enc && $enc !== _CHARSET) {
+			$saved_filename = mb_convert_encoding($saved_filename, _CHARSET, $enc);
+		}
+	}
+	if (_CHARSET !== 'UTF-8') {
+		$saved_filename = mb_convert_encoding($saved_filename, 'UTF-8', _CHARSET);
+	}
+}
+
 $ua = $_SERVER['HTTP_USER_AGENT'];
+$filenameEncoded = rawurlencode($saved_filename);
+if (strpos($filenameEncoded, '%') === false) { // ASCII only
+	$filename = 'filename="'.$saved_filename.'"';
+} else {
+	if (preg_match('/MSIE [4-8]/', $ua)) { // IE < 9 do not support RFC 6266 (RFC 2231/RFC 5987)
+		$filename = 'filename="'.$filenameEncoded.'"';
+	} elseif (strpos($ua, 'Chrome') === false && strpos($ua, 'Safari') !== false && preg_match('#Version/[3-5]#', $ua)) { // Safari < 6
+		$filename = 'filename="'.str_replace('"', '', $saved_filename).'"';
+	} else { // RFC 6266 (RFC 2231/RFC 5987)
+		$filename = 'filename*=UTF-8\'\''.$filenameEncoded;
+	}
+}
 
-if(strstr($ua, "MSIE") && !strstr($ua, 'Opera')){
-	$saved_filename = mb_convert_encoding($saved_filename, 'SJIS', 'EUC-JP');
-}
-else{
-	$saved_filename = mb_convert_encoding($saved_filename, 'UTF-8', 'EUC-JP');
-}
+header('Content-Type: application/force-download');
+header('Content-Disposition: attachment; '.$filename);
+header('Content-Transfer-Encoding: binary');
+header('Content-Length: '.filesize($path_file));
+header('Connection: close');
 
-ini_set('include_path', XOOPS_TRUST_PATH.'/PEAR');
-if(include_once('HTTP/Download.php')){
-	$download = new HTTP_Download();
-	$download->setFile($path_file);
-	$download->setCache(false);
-	$download->setContentDisposition(HTTP_DOWNLOAD_ATTACHMENT, $saved_filename);
-	$download->setContentType('application/octet-stream');
-	$download->send();
-}
-else{
-	header("Location: ".XOOPS_URL);
-}
+while(@ob_get_level()){ ob_end_clean(); }
+
+readfile($path_file);
+
 exit();
 
 //------------------------------------------------------------------------------

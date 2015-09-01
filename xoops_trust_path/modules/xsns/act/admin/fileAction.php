@@ -68,6 +68,12 @@ function dispatch()
 			'time' => str_replace(" ", "<br>", date('Y-m-d H:i:s', $file_info['mtime'])),
 			'active' => "checked",
 		);
+		if (defined('XSNS_FILENAME_ENCODING_AUTO') && defined('_CHARSET') && function_exists('mb_detect_encoding')) {
+			$enc = mb_detect_encoding($file_list['filename'], 'EUC-JP, UTF-8');
+			if ($enc && $enc !== _CHARSET) {
+				$file_list['filename'] = mb_convert_encoding($file_list['filename'], _CHARSET, $enc);
+			}
+		}
 		unset($author_obj);
 	}
 	
